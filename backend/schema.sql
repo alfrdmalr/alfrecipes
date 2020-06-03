@@ -1,0 +1,59 @@
+DROP TABLE IF EXISTS user;
+DROP TABLE IF EXISTS recipe;
+DROP TABLE IF EXISTS ingredient;
+DROP TABLE IF EXISTS step;
+DROP TABLE IF EXISTS recipe_tag;
+DROP TABLE IF EXISTS tag;
+DROP TABLE IF EXISTS tag_type;
+
+CREATE TABLE user (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  username TEXT UNIQUE NOT NULL,
+  password TEXT NOT NULL
+);
+
+CREATE TABLE recipe (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  author_id INTEGER NOT NULL,
+  created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  title TEXT NOT NULL,
+  author_notes TEXT,
+  FOREIGN KEY (author_id) REFERENCES user (id)
+);
+
+CREATE TABLE ingredient (
+  id INTEGER PRIMARY KEY AUTOINCREMENT, 
+  recipe_id INTEGER NOT NULL,
+  ingredient_no INTEGER NOT NULL,
+  measurement REAL,
+  item TEXT NOT NULL,
+  FOREIGN KEY (recipe_id) REFERENCES recipe (id)
+);
+
+CREATE TABLE step (
+ id INTEGER PRIMARY KEY AUTOINCREMENT, 
+ recipe_id INTEGER NOT NULL,
+ step_no INTEGER NOT NULL,
+ instruction TEXT NOT NULL,
+ FOREIGN KEY (recipe_id) REFERENCES recipe (id)
+);
+
+CREATE TABLE recipe_tag (
+  recipe_id INTEGER NOT NULL,
+  tag_id INTEGER NOT NULL, 
+  PRIMARY KEY (recipe_id, tag_id),
+  FOREIGN KEY (recipe_id) REFERENCES recipe (id),
+  FOREIGN KEY (tag_id) REFERENCES tag (id)
+);
+
+CREATE TABLE tag_type (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  tag_type_name TEXT NOT NULL
+);
+
+CREATE TABLE tag (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  tag_name TEXT NOT NULL,
+  tag_type_id INTEGER NOT NULL,
+  FOREIGN KEY (tag_type_id) REFERENCES tag_type (id)
+);
