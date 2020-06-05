@@ -1,1 +1,2 @@
-FLASK_APP=alfrecipes
+FLASK_APP=backend
+FLASK_ENV=development
