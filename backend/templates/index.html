@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Users{% endblock %}</h1>
+  <div>This is a list of all users registered to the system. See if you can find yourself!</div>
+{% endblock %}
+{% block content %}
+  {% for user in users %}
+   <div>{{ user.username }} {% if g.user and user.username == g.user.username %}(it's you!){% endif %}</div>   
+  {% endfor %}
+  <hr />
+  <div>
+    Recipe of the day:
+    <div>
+    {{ recipe }}
+    </div>
+  </div>
+{% endblock %}
