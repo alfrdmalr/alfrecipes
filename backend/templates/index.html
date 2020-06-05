@@ -8,4 +8,11 @@
   {% for user in users %}
    <div>{{ user.username }} {% if g.user and user.username == g.user.username %}(it's you!){% endif %}</div>   
   {% endfor %}
+  <hr />
+  <div>
+    Recipe of the day:
+    <div>
+    {{ recipe }}
+    </div>
+  </div>
 {% endblock %}

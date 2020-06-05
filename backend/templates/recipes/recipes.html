@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Recipes{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+  {% for recipe in recipes %}
+     <div>{{ recipe.username, recipe.title, recipe.author_notes }} </div>   
+  {% endfor %}
+ {% endblock %}
+

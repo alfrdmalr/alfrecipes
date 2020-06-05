@@ -1,7 +1,7 @@
 import sqlite3
 
 import click
-from flask import current_app, g
+from flask import current_app, g, jsonify
 from flask.cli import with_appcontext
 
 def get_db():
@@ -11,7 +11,7 @@ def get_db():
       detect_types=sqlite3.PARSE_DECLTYPES
     )
     g.db.row_factory = sqlite3.Row
-
+  
   return g.db
 
 def close_db(e=None):
@@ -35,3 +35,8 @@ def init_db_command():
 def init_app(app):
   app.teardown_appcontext(close_db)
   app.cli.add_command(init_db_command)
+
+def get_json(res):
+    if isinstance(res, list):
+        return jsonify(list(map(lambda x: dict(x), res)))
+    return jsonify(dict(res))
