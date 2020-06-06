@@ -8,8 +8,21 @@
   <form method="post" action="/recipes/create">
     <label for="title">Recipe Name</label>
     <input name="title" id="title" required>
-    <label for="notes">Author Notes</label>
-    <input name="notes" id="notes" required>
+
+    <label for="ingno">ing no</label>
+    <input name="ingno" id="ingno" required>
+    <label for="ing1">First Ingredient</label>
+    <input name="ing1" id="ing1" required>
+
+
+    <label for="stepno">step number</label>
+    <input name="stepno" id="stepno" required>
+    <label for="step1">First Step</label>
+    <input name="step1" id="step1" required>
+
+    <label for="notes">Notes for the Chef:</label>
+    <textarea name="notes" id="notes"></textarea>
+
     <input type="submit" value="Create Recipe">
   </form>
 {% endblock %}
